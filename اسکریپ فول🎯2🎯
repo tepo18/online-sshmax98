@@ -1,0 +1,148 @@
+import os
+import re
+import json
+import base64
+from ping3 import ping
+from colorama import Fore, Style, init
+import sys
+import yaml
+
+init(autoreset=True)
+
+def extract_host(config):
+    match = re.search(r'@([^:/\s]+)', config)
+    if match:
+        return match.group(1)
+    match = re.search(r'://([^:/\s]+)', config)
+    if match:
+        return match.group(1)
+    return None
+
+def is_reachable(host):
+    try:
+        delay = ping(host, timeout=1)
+        if delay is None:
+            return False, None
+        return True, delay
+    except Exception:
+        return False, None
+
+def save_txt(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        for item in data:
+            f.write(item + '\n')
+
+def save_yaml(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        yaml.dump(data, f, allow_unicode=True)
+
+def save_base64(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        for item in data:
+            encoded = base64.b64encode(item.encode()).decode()
+            f.write(encoded + '\n')
+
+def save_hadhifa(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        for item in data:
+            f.write(item.replace(' ', '') + '\n')
+
+def save_fragmented(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        for item in data:
+            f.write(item + '\n')
+
+def main():
+    print(Fore.CYAN + "Paste your configs (one per line). End input with Ctrl+D:" + Style.RESET_ALL)
+
+    configs = []
+    while True:
+        try:
+            line = input()
+            configs.append(line.strip())
+        except EOFError:
+            break
+
+    configs = [c for c in configs if c]
+    if not configs:
+        print(Fore.RED + "No valid input detected. Exiting." + Style.RESET_ALL)
+        sys.exit(0)
+
+    print(Fore.YELLOW + f"\nTotal configs entered: {len(configs)}" + Style.RESET_ALL)
+
+    print(Fore.YELLOW + "\nPerform ping test on each config?\n(1) Yes  (2) No" + Style.RESET_ALL)
+    choice = input(Fore.CYAN + "Enter 1 or 2: " + Style.RESET_ALL).strip()
+
+    filtered = []
+    if choice == '1':
+        for cfg in configs:
+            host = extract_host(cfg)
+            if not host:
+                print(Fore.MAGENTA + f"[NO HOST] Cannot extract from: {cfg}" + Style.RESET_ALL)
+                continue
+            valid, delay = is_reachable(host)
+            if valid:
+                if delay < 0.1:
+                    color = Fore.GREEN
+                elif delay < 0.3:
+                    color = Fore.YELLOW
+                else:
+                    color = Fore.RED
+                print(color + f"[OK] {host} - {delay*1000:.1f} ms" + Style.RESET_ALL)
+                filtered.append(cfg)
+            else:
+                print(Fore.RED + f"[FAIL] {host}" + Style.RESET_ALL)
+        if not filtered:
+            print(Fore.RED + "No valid configs passed the ping test. Exiting." + Style.RESET_ALL)
+            sys.exit(0)
+    elif choice == '2':
+        filtered = configs
+    else:
+        print(Fore.RED + "Invalid choice. Exiting." + Style.RESET_ALL)
+        sys.exit(0)
+
+    while True:
+        print(Fore.YELLOW + "\nChoose output format:\n"
+              "1. Fragmented TXT\n"
+              "2. Raw JSON\n"
+              "3. Plain TXT\n"
+              "4. YAML File\n"
+              "5. Base64 Encoded\n"
+              "6. Hadifa Line Format" + Style.RESET_ALL)
+
+        out_choice = input(Fore.CYAN + "Enter 1-6: " + Style.RESET_ALL).strip()
+        filename = input(Fore.CYAN + "Enter output filename (no extension): " + Style.RESET_ALL).strip()
+        base_path = '/storage/emulated/0/Download/Akbar98/'
+        os.makedirs(base_path, exist_ok=True)
+
+        if out_choice == '1':
+            save_fragmented(os.path.join(base_path, filename + '.txt'), filtered)
+        elif out_choice == '2':
+            with open(os.path.join(base_path, filename + '.json'), 'w', encoding='utf-8') as f:
+                json.dump(filtered, f, indent=2, ensure_ascii=False)
+        elif out_choice == '3':
+            save_txt(os.path.join(base_path, filename + '.txt'), filtered)
+        elif out_choice == '4':
+            save_yaml(os.path.join(base_path, filename + '.yaml'), filtered)
+        elif out_choice == '5':
+            save_base64(os.path.join(base_path, filename + '.txt'), filtered)
+        elif out_choice == '6':
+            save_hadhifa(os.path.join(base_path, filename + '.txt'), filtered)
+        else:
+            print(Fore.RED + "Invalid output choice." + Style.RESET_ALL)
+            continue
+
+        print(Fore.GREEN + f"✅ Output saved as {filename} in Akbar98 folder." + Style.RESET_ALL)
+
+        again = input(Fore.YELLOW + "Export again with same input? (y/n): " + Style.RESET_ALL).strip().lower()
+        if again != 'y':
+            print(Fore.CYAN + "Done. Exiting." + Style.RESET_ALL)
+            break
+
+if __name__ == "__main__":
+    main()

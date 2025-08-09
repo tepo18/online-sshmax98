@@ -1,0 +1,299 @@
+import os
+import re
+import json
+import yaml
+import base64
+import subprocess
+from urllib.parse import quote, unquote, parse_qs
+from rich import print
+
+protocols = ["vless://", "vmess://", "trojan://", "ss://"]
+
+def extract_host(config):
+    match = re.search(r"@([^:/?#]+)", config)
+    return match.group(1) if match else None
+
+def ping_host(host):
+    try:
+        output = subprocess.check_output(
+            ["ping", "-c", "3", "-W", "1", host],
+            stderr=subprocess.DEVNULL
+        ).decode()
+        match = re.search(r"rtt min/avg/max/mdev = [\d.]+/([\d.]+)", output)
+        return float(match.group(1)) if match else None
+    except:
+        return None
+
+def classify_ping(ping):
+    if ping is None:
+        return "bad", "[bold red][BAD][/bold red]"
+    elif ping < 150:
+        return "good", "[bold green][GOOD][/bold green]"
+    elif ping < 300:
+        return "warn", "[bold yellow][WARN][/bold yellow]"
+    else:
+        return "bad", "[bold red][BAD][/bold red]"
+
+def parse_link(link):
+    link = link.strip()
+    if link.startswith("vless://"):
+        protocol = "vless"
+    else:
+        return None, None
+
+    try:
+        main_part = link.split("://")[1]
+        if "#" in main_part:
+            main_part, remark = main_part.split("#", 1)
+        else:
+            remark = ""
+
+        if "?" in main_part:
+            addr_port, params = main_part.split("?", 1)
+            query = parse_qs(params)
+        else:
+            addr_port = main_part
+            query = {}
+
+        if '@' in addr_port:
+            user, host_port = addr_port.split("@", 1)
+        else:
+            user = ""
+            host_port = addr_port
+
+        if ':' in host_port:
+            address, port = host_port.split(":", 1)
+        else:
+            address, port = host_port, "443"
+
+        parsed = {
+            "protocol": protocol,
+            "address": address,
+            "port": int(port) if port.isdigit() else 443,
+            "id": user,
+            "params": {k: v[0] for k, v in query.items()},
+            "remark": unquote(remark)
+        }
+        return protocol, parsed
+    except:
+        return None, None
+
+def build_fragment_list(configs):
+    fragments = []
+    for i, cfg in enumerate(configs):
+        outbound = {
+            "tag": "proxy",
+            "protocol": "vless",
+            "settings": {
+                "vnext": [{
+                    "address": cfg["address"],
+                    "port": cfg["port"],
+                    "users": [{
+                        "id": cfg["id"],
+                        "encryption": cfg["params"].get("encryption", "none"),
+                        "flow": cfg["params"].get("flow", "")
+                    }]
+                }]
+            },
+            "streamSettings": {
+                "network": cfg["params"].get("type", "ws"),
+                "security": cfg["params"].get("security", "tls"),
+                "sockopt": {
+                    "dialerProxy": "fragment"
+                },
+                "tlsSettings": {
+                    "serverName": cfg["params"].get("sni", cfg["params"].get("host", cfg["address"])),
+                    "fingerprint": cfg["params"].get("fp", "chrome"),
+                    "alpn": cfg["params"].get("alpn", "").split(",") if "alpn" in cfg["params"] else ["http/1.1"]
+                },
+                "wsSettings": {
+                    "path": cfg["params"].get("path", "/"),
+                    "headers": {
+                        "Host": cfg["params"].get("host", cfg["address"])
+                    }
+                }
+            }
+        }
+
+        fragment = {
+            "remarks": cfg["remark"] or f"💦 {i+1} - VLESS",
+            "log": {"loglevel": "warning"},
+            "dns": {
+                "servers": [
+                    {
+                        "address": "https://8.8.8.8/dns-query",
+                        "tag": "remote-dns"
+                    },
+                    {
+                        "address": "8.8.8.8",
+                        "domains": [f"full:{cfg['address']}"],
+                        "skipFallback": True
+                    }
+                ],
+                "queryStrategy": "UseIP",
+                "tag": "dns"
+            },
+            "inbounds": [
+                {
+                    "port": 10808,
+                    "protocol": "socks",
+                    "settings": {
+                        "auth": "noauth",
+                        "udp": True,
+                        "userLevel": 8
+                    },
+                    "sniffing": {
+                        "destOverride": ["http", "tls"],
+                        "enabled": True,
+                        "routeOnly": True
+                    },
+                    "tag": "socks-in"
+                },
+                {
+                    "port": 10853,
+                    "protocol": "dokodemo-door",
+                    "settings": {
+                        "address": "1.1.1.1",
+                        "network": "tcp,udp",
+                        "port": 53
+                    },
+                    "tag": "dns-in"
+                }
+            ],
+            "outbounds": [
+                outbound,
+                {
+                    "tag": "fragment",
+                    "protocol": "freedom",
+                    "settings": {
+                        "fragment": {
+                            "packets": "tlshello",
+                            "length": "100-200",
+                            "interval": "1-1"
+                        },
+                        "domainStrategy": "UseIPv4v6"
+                    }
+                }
+            ],
+            "routing": {
+                "domainStrategy": "IPIfNonMatch",
+                "rules": [
+                    {
+                        "inboundTag": ["dns-in"],
+                        "outboundTag": "dns-out",
+                        "type": "field"
+                    },
+                    {
+                        "network": "tcp",
+                        "outboundTag": "proxy",
+                        "type": "field"
+                    }
+                ]
+            }
+        }
+        fragments.append(fragment)
+    return fragments
+
+def save_output(configs):
+    save_path = "/storage/emulated/0/Download/Akbar98"
+    os.makedirs(save_path, exist_ok=True)
+
+    while True:
+        print("\n[bold cyan]📤 Choose output format:[/bold cyan]")
+        print("1. Fragmented JSON (برای MERG)")
+        print("2. Simple JSON")
+        print("3. TXT Summary")
+        print("4. YAML File")
+        print("5. Base64 Fragment JSON")
+        print("6. Raw JSON Line (Hadhifa Style)")
+
+        choice = input("👉 گزینه موردنظر؟ (1-6): ").strip()
+        file_name = input("📁 نام فایل خروجی (بدون پسوند): ").strip()
+        if not file_name:
+            print("[red]❌ نام فایل نمی‌تواند خالی باشد[/red]")
+            continue
+
+        full_path = ""
+        if choice == "1":
+            output_data = build_fragment_list(configs)
+            full_path = os.path.join(save_path, file_name + ".json")
+            with open(full_path, "w", encoding="utf-8") as f:
+                json.dump(output_data, f, indent=2, ensure_ascii=False)
+
+        elif choice == "2":
+            full_path = os.path.join(save_path, file_name + ".json")
+            with open(full_path, "w", encoding="utf-8") as f:
+                json.dump(configs, f, indent=2, ensure_ascii=False)
+
+        elif choice == "3":
+            lines = []
+            for i, cfg in enumerate(configs, 1):
+                lines.append(f"{i}. vless://{cfg['id']}@{cfg['address']}:{cfg['port']}  remark: {cfg['remark']}")
+            full_path = os.path.join(save_path, file_name + ".txt")
+            with open(full_path, "w", encoding="utf-8") as f:
+                f.write("\n".join(lines))
+
+        elif choice == "4":
+            full_path = os.path.join(save_path, file_name + ".yaml")
+            with open(full_path, "w", encoding="utf-8") as f:
+                yaml.dump(configs, f, allow_unicode=True)
+
+        elif choice == "5":
+            b64 = base64.b64encode(json.dumps(build_fragment_list(configs)).encode()).decode()
+            full_path = os.path.join(save_path, file_name + ".b64")
+            with open(full_path, "w", encoding="utf-8") as f:
+                f.write(b64)
+
+        elif choice == "6":
+            compact = json.dumps(configs, separators=(",", ":"), ensure_ascii=False)
+            full_path = os.path.join(save_path, file_name + ".json")
+            with open(full_path, "w", encoding="utf-8") as f:
+                f.write(compact)
+
+        else:
+            print("[red]❌ انتخاب نامعتبر. مجدد تلاش کن.[/red]")
+            continue
+
+        print(f"[bold green]✅ ذخیره شد در: {full_path}[/bold green]")
+        again = input("\nادامه بده؟ (y/n): ").strip().lower()
+        if again != "y":
+            break
+
+def main():
+    print("[bold cyan]Paste your configs (Ctrl+D to finish):[/bold cyan]")
+    lines = []
+    while True:
+        try:
+            line = input()
+            if line.strip():
+                lines.append(line.strip())
+        except EOFError:
+            break
+
+    good_configs = []
+    for line in lines:
+        if not any(line.startswith(p) for p in protocols):
+            continue
+
+        host = extract_host(line)
+        if not host:
+            print(f"[bold red][INVALID][/bold red] {line}")
+            continue
+
+        ping = ping_host(host)
+        status, label = classify_ping(ping)
+        print(f"{label} {host} - {ping if ping else 'NO REPLY'}ms")
+
+        if status == "good":
+            proto, parsed = parse_link(line)
+            if proto:
+                good_configs.append(parsed)
+
+    if not good_configs:
+        print("[bold red]❌ هیچ کانفیگ خوبی یافت نشد.[/bold red]")
+        return
+
+    save_output(good_configs)
+
+if __name__ == "__main__":
+    main()
