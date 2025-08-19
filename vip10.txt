@@ -1,5 +1,5 @@
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-104.17.4.197:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-104.17.4.197:443",
   "log": {
     "loglevel": "warning"
   },
@@ -122,7 +122,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-104.21.95.229:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-104.21.95.229:443",
   "log": {
     "loglevel": "warning"
   },
@@ -245,7 +245,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠🥏 NA-172.67.172.177:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ðŸ¥ NA-172.67.172.177:443",
   "log": {
     "loglevel": "warning"
   },
@@ -368,7 +368,7 @@
   }
 },
 {
-  "remarks": "🇸🇬[openproxylist.com]",
+  "remarks": "ðŸ‡¸ðŸ‡¬[openproxylist.com]",
   "log": {
     "loglevel": "warning"
   },
@@ -491,7 +491,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-172.64.151.232:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-172.64.151.232:443",
   "log": {
     "loglevel": "warning"
   },
@@ -615,7 +615,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-172.64.151.232:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-172.64.151.232:443",
   "log": {
     "loglevel": "warning"
   },
@@ -739,7 +739,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-104.21.95.229:2096",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-104.21.95.229:2096",
   "log": {
     "loglevel": "warning"
   },
@@ -985,7 +985,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🇺🇸 US-160.153.0.32:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ‡ºðŸ‡¸ US-160.153.0.32:443",
   "log": {
     "loglevel": "warning"
   },
@@ -1108,7 +1108,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🇺🇸 US-160.153.0.32:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ‡ºðŸ‡¸ US-160.153.0.32:443",
   "log": {
     "loglevel": "warning"
   },
@@ -1231,7 +1231,7 @@
   }
 },
 {
-  "remarks": "🧢55@oneclickvpnkeys",
+  "remarks": "ðŸ§¢55@oneclickvpnkeys",
   "log": {
     "loglevel": "warning"
   },
@@ -1354,7 +1354,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🌟🌟🌟🇯🇵 JP-156.238.18.155:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸŒŸðŸŒŸðŸŒŸðŸ‡¯ðŸ‡µ JP-156.238.18.155:443",
   "log": {
     "loglevel": "warning"
   },
@@ -1477,7 +1477,7 @@
   }
 },
 {
-  "remarks": "🌐T-Net Plus`",
+  "remarks": "ðŸŒT-Net Plus`",
   "log": {
     "loglevel": "warning"
   },
@@ -1600,7 +1600,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-172.67.171.131:2053",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-172.67.171.131:2053",
   "log": {
     "loglevel": "warning"
   },
@@ -1723,7 +1723,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-104.18.0.236:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-104.18.0.236:443",
   "log": {
     "loglevel": "warning"
   },
@@ -1846,7 +1846,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-104.26.14.69:2096",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-104.26.14.69:2096",
   "log": {
     "loglevel": "warning"
   },
@@ -1969,7 +1969,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🏴‍☠︄1�7 NA-104.17.185.58:443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ´â€â˜ ï¸„1¤7 NA-104.17.185.58:443",
   "log": {
     "loglevel": "warning"
   },
@@ -2092,7 +2092,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🌟🌟🌟🇷🇺 RU-185.59.218.168:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸŒŸðŸŒŸðŸŒŸðŸ‡·ðŸ‡º RU-185.59.218.168:443",
   "log": {
     "loglevel": "warning"
   },
@@ -2215,7 +2215,7 @@
   }
 },
 {
-  "remarks": "🇫🇷[openproxylist.com]",
+  "remarks": "ðŸ‡«ðŸ‡·[openproxylist.com]",
   "log": {
     "loglevel": "warning"
   },
@@ -2707,7 +2707,7 @@
   }
 },
 {
-  "remarks": "🇨🇦CA_1213_@Surfboardv2ray",
+  "remarks": "ðŸ‡¨ðŸ‡¦CA_1213_@Surfboardv2ray",
   "log": {
     "loglevel": "warning"
   },
@@ -2830,7 +2830,7 @@
   }
 },
 {
-  "remarks": "🇨🇦CA_318_@Surfboardv2ray",
+  "remarks": "ðŸ‡¨ðŸ‡¦CA_318_@Surfboardv2ray",
   "log": {
     "loglevel": "warning"
   },
@@ -2953,7 +2953,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-WS-TLS 🇯🇵 JP-5.253.41.237:8443",
+  "remarks": "ðŸ”’ VL-WS-TLS ðŸ‡¯ðŸ‡µ JP-5.253.41.237:8443",
   "log": {
     "loglevel": "warning"
   },
@@ -3076,7 +3076,7 @@
   }
 },
 {
-  "remarks": "Channel id: @mobilesignal 🇯🇵",
+  "remarks": "Channel id: @mobilesignal ðŸ‡¯ðŸ‡µ",
   "log": {
     "loglevel": "warning"
   },
@@ -3322,7 +3322,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-160.153.0.43:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-160.153.0.43:443",
   "log": {
     "loglevel": "warning"
   },
@@ -3445,7 +3445,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-167.68.5.109:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-167.68.5.109:443",
   "log": {
     "loglevel": "warning"
   },
@@ -3568,7 +3568,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇬🇧 GB-102.177.189.251:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡¬ðŸ‡§ GB-102.177.189.251:443",
   "log": {
     "loglevel": "warning"
   },
@@ -3691,7 +3691,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇱🇹 LT-88.216.67.84:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡±ðŸ‡¹ LT-88.216.67.84:443",
   "log": {
     "loglevel": "warning"
   },
@@ -3814,7 +3814,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-167.68.42.168:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-167.68.42.168:443",
   "log": {
     "loglevel": "warning"
   },
@@ -3937,7 +3937,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇸🇮 SI-92.53.191.80:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡¸ðŸ‡® SI-92.53.191.80:443",
   "log": {
     "loglevel": "warning"
   },
@@ -4060,7 +4060,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇸🇮 SI-92.53.189.161:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡¸ðŸ‡® SI-92.53.189.161:443",
   "log": {
     "loglevel": "warning"
   },
@@ -4183,7 +4183,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇳🇱 NL-5.10.245.68:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡³ðŸ‡± NL-5.10.245.68:443",
   "log": {
     "loglevel": "warning"
   },
@@ -4306,7 +4306,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-66.81.247.18:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-66.81.247.18:443",
   "log": {
     "loglevel": "warning"
   },
@@ -4429,7 +4429,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-14.102.228.18:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-14.102.228.18:443",
   "log": {
     "loglevel": "warning"
   },
@@ -4552,7 +4552,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇫🇷 FR-141.11.202.193:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡«ðŸ‡· FR-141.11.202.193:443",
   "log": {
     "loglevel": "warning"
   },
@@ -4921,7 +4921,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-103.116.7.158:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-103.116.7.158:443",
   "log": {
     "loglevel": "warning"
   },
@@ -5044,7 +5044,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇦🇪 AE-181.214.1.222:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡¦ðŸ‡ª AE-181.214.1.222:443",
   "log": {
     "loglevel": "warning"
   },
@@ -5167,7 +5167,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇸🇮 SI-92.53.188.36:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡¸ðŸ‡® SI-92.53.188.36:443",
   "log": {
     "loglevel": "warning"
   },
@@ -5290,7 +5290,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇺🇸 US-103.133.1.171:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡ºðŸ‡¸ US-103.133.1.171:443",
   "log": {
     "loglevel": "warning"
   },
@@ -5413,7 +5413,7 @@
   }
 },
 {
-  "remarks": "🔒 VL-GRPC-TLS 🇬🇧 GB-164.38.155.97:443",
+  "remarks": "ðŸ”’ VL-GRPC-TLS ðŸ‡¬ðŸ‡§ GB-164.38.155.97:443",
   "log": {
     "loglevel": "warning"
   },
@@ -5536,7 +5536,7 @@
   }
 },
 {
-  "remarks": "�9�8 VL-WS-TLS �9�5�9�1 JP-5.253.41.237:8443",
+  "remarks": "”9ä8 VL-WS-TLS ”9”5”9•1 JP-5.253.41.237:8443",
   "log": {
     "loglevel": "warning"
   },
@@ -5659,7 +5659,7 @@
   }
 },
 {
-  "remarks": "�9�8�9�6CA_1213_@Surfboardv2ray",
+  "remarks": "”9“8”9“6CA_1213_@Surfboardv2ray",
   "log": {
     "loglevel": "warning"
   },
@@ -5905,7 +5905,7 @@
   }
 },
 {
-  "remarks": "�9�8 VL-GRPC-TLS �9�9�9�9�9�9�9�3�9�6 RU-185.59.218.168:443",
+  "remarks": "”9ä8 VL-GRPC-TLS ”9²9”9²9”9²9”9•3”9•6 RU-185.59.218.168:443",
   "log": {
     "loglevel": "warning"
   },
@@ -6028,7 +6028,7 @@
   }
 },
 {
-  "remarks": "�9�8 VL-GRPC-TLS �9�9�9�9�9�9�9�5�9�1 JP-156.238.18.155:443",
+  "remarks": "”9ä8 VL-GRPC-TLS ”9²9”9²9”9²9”9”5”9•1 JP-156.238.18.155:443",
   "log": {
     "loglevel": "warning"
   },
@@ -6151,7 +6151,7 @@
   }
 },
 {
-  "remarks": "�9�8 VL-WS-TLS �9�5�9�1 JP-5.253.41.237:8443",
+  "remarks": "”9ä8 VL-WS-TLS ”9”5”9•1 JP-5.253.41.237:8443",
   "log": {
     "loglevel": "warning"
   },
@@ -6274,7 +6274,7 @@
   }
 },
 {
-  "remarks": "Channel id: @mobilesignal �9�5�9�1",
+  "remarks": "Channel id: @mobilesignal ”9”5”9•1",
   "log": {
     "loglevel": "warning"
   },
