@@ -1,0 +1,220 @@
+proxies:
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.209:8080#✅@v2ray_configs_pools"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.240:8080#✅@v2ray_configs_pools"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.65:8080#@Vip_Security join us - 92"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpRQ1hEeHVEbFRUTUQ3anRnSFVqSW9q@45.87.175.181:8080#SamouraiVPN"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.141:8080#✅@v2ray_configs_pools"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.58:8080#Telegram: @v2node"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.28:8080#Telegram: @v2node"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.251:8080#Telegram : @V2RAYUSAIR`"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.235:8080#✅@v2ray_configs_pools"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.154:8080#@Vip_Security join us - 3"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.22:8080#@Vip_Security join us - 91"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo5dHFoTWRJclRrZ1E0NlB2aHlBdE1I@switcher-nick-croquet.freesocks.work:443#@Vip_Security join us - 17"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.164:8080#@Vip_Security join us - 4"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpOazlhc2dsRHpIemprdFZ6VGt2aGFB@arxfw2b78fi2q9hzylhn.freesocks.work:443#🇻🇳[@rat_leak]"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@beesyar.org:8080#@Vip_Security join us - 7"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.192:8080#@Vip_Security join us - 6"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://bpb-trojan@104.26.4.60:443?path=/tr?ed=2560&security=tls&host=zamim340.ggff.net&type=ws&sni=zamim340.ggff.net#@Vip_Security join us - 251+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo0YTJyZml4b3BoZGpmZmE4S1ZBNEFh@45.87.175.171:8080#@Vip_Security join us - 5"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://2ee85121-31de-4581-a492-eb00f606e392@192.3.107.252:443?security=tls&headerType=&fp=chrome&type=tcp&sni=rc8.freeguard.org#✅@v2ray_configs_pools`+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.209:8080#✅@v2ray_configs_pools"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://2ee85121-31de-4581-a492-eb00f606e392@192.3.107.252:443?security=tls&headerType=&fp=chrome&type=tcp&sni=rc8.freeguard.org#✅@v2ray_configs_pools`+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.240:8080#✅@v2ray_configs_pools"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "ARISTA🌟🌟🌐+trojan://2ee85121-31de-4581-a492-eb00f606e392@192.3.107.252:443?security=tls&headerType=&fp=chrome&type=tcp&sni=rc8.freeguard.org#✅@v2ray_configs_pools`+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@45.87.175.65:8080#@Vip_Security join us - 92"
+    type: vless
+    server: zula.ir
+    port: 443
+    uuid: 172ed5fd-83a6-469e-863c-50e251a6c17d
+    network: ws
+    tls: true
+    servername: rayan-supra.parisa.dpdns.org
+    skip-cert-verify: false
+    udp: true
