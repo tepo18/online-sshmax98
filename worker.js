@@ -3,6 +3,23 @@ const PASSWORD = "15601560"; // 🔑 رمز ورود پنل
 
 // ======= منابع شخصی شما =======
 const STATIC_SOURCES = [
+  "https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/main/ws_tls/proxies/wstls",
+"https://raw.githubusercontent.com/Surfboardv2ray/TGParse/refs/heads/main/configtg.txt",
+"https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/refs/heads/main/custom/ipv6.txt",
+"https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/refs/heads/main/custom/udp.txt",
+"https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/refs/heads/main/selector/random",
+"https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/refs/heads/main/output/converted.txt",
+"https://raw.githubusercontent.com/Surfboardv2ray/Proxy-sorter/refs/heads/main/output/IR.txt",
+"https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/python/hy2",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge50.txt",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge40.txt",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge20.txt",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge10.txt",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge10.json",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge20.json",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge30.json",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge40.json",
+"https://raw.githubusercontent.com/tepo18/reza-shah1320/main/merge50.json",
   "https://ssh-max18.ahsan-tepo1383online.workers.dev/sub/104.18.101.226",
   "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/config3.txt",
   "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/config.txt",
