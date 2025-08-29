@@ -2,73 +2,37 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
-import json
-import time
-import base64
-import threading
-import signal
-import psutil
 import urllib.request
 import urllib.parse
+import base64
+import json
+import time
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any, List
+from typing import List, Dict, Any, Optional
 
-CONF_PATH = "config.json"
+# ===================== Paths & Settings =====================
 TEXT_PATH = "normal.txt"
 FIN_PATH = "final.txt"
+
 LINK_PATH = [
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo10.txt",
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo20.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo30.txt"
+    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo30.txt",
 ]
 
 FILE_HEADER_TEXT = "//profile-title: base64:2YfZhduM2LTZhyDZgdi52KfZhCDwn5iO8J+YjvCfmI4gaGFtZWRwNzE="
 
-class ProcessManager:
-    def __init__(self):
-        self.active_processes = {}
-        self.lock = threading.Lock()
-
-    def add_process(self, name: str, pid: int):
-        with self.lock:
-            self.active_processes[name] = pid
-
-    def stop_process(self, name: str):
-        pid_to_stop = None
-        with self.lock:
-            if name in self.active_processes:
-                pid_to_stop = self.active_processes.pop(name)
-        if pid_to_stop and psutil.pid_exists(pid_to_stop):
-            try:
-                os.kill(pid_to_stop, signal.SIGTERM)
-                time.sleep(1)
-                if psutil.pid_exists(pid_to_stop):
-                    os.kill(pid_to_stop, signal.SIGKILL)
-            except Exception as e:
-                print(f"Error stopping process {name}: {e}")
-
-    def stop_all(self):
-        with self.lock:
-            for name in list(self.active_processes.keys()):
-                self.stop_process(name)
-
-process_manager = ProcessManager()
-
+# ===================== Config Class =====================
 @dataclass
 class ConfigParams:
     protocol: str
     address: str
     port: int
-    security: str = ""
-    encryption: str = "none"
-    network: str = "tcp"
-    id: str = ""
     tag: str = ""
-    path: str = None
-    host: str = None
+    id: str = ""
     extra_params: Dict[str, Any] = field(default_factory=dict)
 
+# ===================== Helper Functions =====================
 def remove_empty_strings(lst: List[str]) -> List[str]:
     return [str(x).strip() for x in lst if x and str(x).strip()]
 
@@ -92,41 +56,33 @@ def parse_config_line(line: str) -> Optional[ConfigParams]:
             if missing_padding:
                 encoded += '=' * (4 - missing_padding)
             data = json.loads(base64.b64decode(encoded).decode())
-            return ConfigParams(protocol="vmess", address=data.get("add"), port=int(data.get("port",0)), id=data.get("id",""), tag=data.get("ps",""))
-        elif line.startswith("vless://"):
+            return ConfigParams(
+                protocol="vmess",
+                address=data.get("add", ""),
+                port=int(data.get("port", 0)),
+                id=data.get("id", ""),
+                tag=data.get("ps", "")
+            )
+        elif line.startswith("vless://") or line.startswith("trojan://") or line.startswith("hy2://") or line.startswith("hysteria://"):
             parts = line.split("://")[1].split("@")
-            if len(parts)==2:
+            if len(parts) == 2:
                 uid, addrport = parts
                 addr, port = addrport.split(":")
-                return ConfigParams(protocol="vless", id=uid, address=addr, port=int(port))
-        elif line.startswith("trojan://"):
-            parts = line.split("://")[1].split("@")
-            if len(parts)==2:
-                pwd, addrport = parts
-                addr, port = addrport.split(":")
-                return ConfigParams(protocol="trojan", id=pwd, address=addr, port=int(port))
-        elif line.startswith("hy2://") or line.startswith("hysteria://"):
-            parts = line.split("://")[1].split("@")
-            if len(parts)==2:
-                pwd, addrport = parts
-                addr, port = addrport.split(":")
-                return ConfigParams(protocol="hy2", id=pwd, address=addr, port=int(port))
-        elif line.startswith("ss://"):
-            return ConfigParams(protocol="ss", address=line, port=0)
-        elif line.startswith("socks://"):
-            return ConfigParams(protocol="socks", address=line, port=0)
-        elif line.startswith("wireguard://"):
-            return ConfigParams(protocol="wireguard", address=line, port=0)
+                proto = line.split("://")[0]
+                return ConfigParams(protocol=proto, id=uid, address=addr, port=int(port))
+        elif line.startswith("ss://") or line.startswith("socks://") or line.startswith("wireguard://"):
+            proto = line.split("://")[0]
+            return ConfigParams(protocol=proto, address=line, port=0)
         return None
     except Exception:
         return None
 
 def fetch_subs(url: str) -> List[str]:
     try:
-        with urllib.request.urlopen(url) as resp:
+        with urllib.request.urlopen(url, timeout=15) as resp:
             content = resp.read().decode()
         return content.splitlines()
-    except:
+    except Exception:
         return []
 
 def update_subscriptions():
@@ -138,15 +94,19 @@ def update_subscriptions():
             if parsed:
                 all_configs.append(line)
     all_configs = clear_and_unique(all_configs)
-    with open(TEXT_PATH,"w",encoding="utf-8") as f:
-        f.write(FILE_HEADER_TEXT+"\n")
-        f.write("\n".join(all_configs))
-    with open(FIN_PATH,"w",encoding="utf-8") as f:
-        f.write(FILE_HEADER_TEXT+"\n")
-        f.write("\n".join(all_configs))
-    print(f"[+] Updated {FIN_PATH} with {len(all_configs)} lines")
+    all_configs.insert(0, FILE_HEADER_TEXT)
 
-if __name__=="__main__":
+    try:
+        with open(TEXT_PATH, "w", encoding="utf-8") as f:
+            f.write("\n".join(all_configs))
+        with open(FIN_PATH, "w", encoding="utf-8") as f:
+            f.write("\n".join(all_configs))
+        print(f"[✅] Updated {FIN_PATH} with {len(all_configs)} lines")
+    except Exception as e:
+        print(f"[❌] Error saving files: {e}")
+
+# ===================== Main =====================
+if __name__ == "__main__":
     print("[*] Starting full-feature subscription updater...")
     update_subscriptions()
-    print("[*] Next update in 60 minutes...")
+    print("[*] Done. All valid configs saved.")
