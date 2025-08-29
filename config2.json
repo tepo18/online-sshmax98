@@ -1,0 +1,87 @@
+{
+
+    "core": {
+
+      "test_url": "https://www.gstatic.com/generate_204",
+
+      "log_level": "warning",
+
+      "domain_strategy": "IPIFNonMatch",
+
+      "allow_insecure_tls": false,
+
+      "sniffing_enabled": true,
+
+      "inbound_ports": {
+
+        "socks": 10808,
+
+        "http": 10809
+
+      },
+
+      "dns": {
+
+        "enabled": true,
+
+        "fake_dns_enabled": true,
+
+        "local_port": 10853,
+
+        "remote_server": "https://8.8.8.8/dns-query",
+
+        "domestic_server": "1.1.1.2"
+
+      },
+
+      "routing_rules": {
+
+        "proxy": "",
+
+        "direct": "",
+
+        "block": ""
+
+      },
+
+      "fragment": {
+
+        "enabled": true,
+
+        "packets": "tlshello",
+
+        "length": "10-30",
+
+        "interval": "1-5"
+
+      },
+
+      "fake_host": {
+
+        "enabled": false,
+
+        "domain": "cloudflare.com"
+
+      },
+
+      "mux": {
+
+        "enabled": false,
+
+        "concurrency": 8
+
+      }
+
+    },
+
+    "warp_on_warp": {
+
+      "enabled": false,
+
+      "config_url": ""
+
+    }
+
+  }
+
+
