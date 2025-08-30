@@ -1,1 +1,740 @@
-[]
+[
+    {
+        "remarks": "棣冩晙 VL-GRPC-TLS 棣冨殲棣冨殭 GB-102.177.189.251:443",
+        "log": {
+            "loglevel": "warning"
+        },
+        "dns": {
+            "servers": [
+                {
+                    "address": "https://8.8.8.8/dns-query",
+                    "tag": "remote-dns"
+                },
+                {
+                    "address": "8.8.8.8",
+                    "domains": [
+                        "full:102.177.189.251"
+                    ],
+                    "skipFallback": true
+                }
+            ],
+            "queryStrategy": "UseIP",
+            "tag": "dns"
+        },
+        "inbounds": [
+            {
+                "port": 10808,
+                "protocol": "socks",
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "userLevel": 8
+                },
+                "sniffing": {
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ],
+                    "enabled": true,
+                    "routeOnly": true
+                },
+                "tag": "socks-in"
+            },
+            {
+                "port": 10853,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "address": "1.1.1.1",
+                    "network": "tcp,udp",
+                    "port": 53
+                },
+                "tag": "dns-in"
+            }
+        ],
+        "outbounds": [
+            {
+                "tag": "proxy",
+                "protocol": "vless",
+                "settings": {
+                    "vnext": [
+                        {
+                            "address": "102.177.189.251",
+                            "port": 443,
+                            "users": [
+                                {
+                                    "id": "401374e6-df77-41fb-f638-dad8184f175b",
+                                    "encryption": "none",
+                                    "flow": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "streamSettings": {
+                    "network": "grpc",
+                    "security": "tls",
+                    "sockopt": {
+                        "dialerProxy": "fragment"
+                    },
+                    "tlsSettings": {
+                        "serverName": "pqh23v4.hiddendom.shop",
+                        "fingerprint": "chrome",
+                        "alpn": [
+                            "h2"
+                        ]
+                    },
+                    "wsSettings": {
+                        "path": "/",
+                        "headers": {
+                            "Host": "102.177.189.251"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "fragment",
+                "protocol": "freedom",
+                "settings": {
+                    "fragment": {
+                        "packets": "tlshello",
+                        "length": "100-200",
+                        "interval": "1-1"
+                    },
+                    "domainStrategy": "UseIPv4v6"
+                }
+            }
+        ],
+        "routing": {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                {
+                    "inboundTag": [
+                        "dns-in"
+                    ],
+                    "outboundTag": "dns-out",
+                    "type": "field"
+                },
+                {
+                    "network": "tcp",
+                    "outboundTag": "proxy",
+                    "type": "field"
+                }
+            ]
+        }
+    },
+    {
+        "remarks": "棣冩晙 VL-GRPC-TLS 棣冨毉棣冨毇 US-103.133.1.171:443",
+        "log": {
+            "loglevel": "warning"
+        },
+        "dns": {
+            "servers": [
+                {
+                    "address": "https://8.8.8.8/dns-query",
+                    "tag": "remote-dns"
+                },
+                {
+                    "address": "8.8.8.8",
+                    "domains": [
+                        "full:103.133.1.171"
+                    ],
+                    "skipFallback": true
+                }
+            ],
+            "queryStrategy": "UseIP",
+            "tag": "dns"
+        },
+        "inbounds": [
+            {
+                "port": 10808,
+                "protocol": "socks",
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "userLevel": 8
+                },
+                "sniffing": {
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ],
+                    "enabled": true,
+                    "routeOnly": true
+                },
+                "tag": "socks-in"
+            },
+            {
+                "port": 10853,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "address": "1.1.1.1",
+                    "network": "tcp,udp",
+                    "port": 53
+                },
+                "tag": "dns-in"
+            }
+        ],
+        "outbounds": [
+            {
+                "tag": "proxy",
+                "protocol": "vless",
+                "settings": {
+                    "vnext": [
+                        {
+                            "address": "103.133.1.171",
+                            "port": 443,
+                            "users": [
+                                {
+                                    "id": "401374e6-df77-41fb-f638-dad8184f175b",
+                                    "encryption": "none",
+                                    "flow": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "streamSettings": {
+                    "network": "grpc",
+                    "security": "tls",
+                    "sockopt": {
+                        "dialerProxy": "fragment"
+                    },
+                    "tlsSettings": {
+                        "serverName": "pqh36v4.hiddendom.shop",
+                        "fingerprint": "chrome",
+                        "alpn": [
+                            "h2"
+                        ]
+                    },
+                    "wsSettings": {
+                        "path": "/",
+                        "headers": {
+                            "Host": "103.133.1.171"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "fragment",
+                "protocol": "freedom",
+                "settings": {
+                    "fragment": {
+                        "packets": "tlshello",
+                        "length": "100-200",
+                        "interval": "1-1"
+                    },
+                    "domainStrategy": "UseIPv4v6"
+                }
+            }
+        ],
+        "routing": {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                {
+                    "inboundTag": [
+                        "dns-in"
+                    ],
+                    "outboundTag": "dns-out",
+                    "type": "field"
+                },
+                {
+                    "network": "tcp",
+                    "outboundTag": "proxy",
+                    "type": "field"
+                }
+            ]
+        }
+    },
+    {
+        "remarks": "棣冩晙 VL-GRPC-TLS 棣冨殬棣冨殰 AE-181.214.1.222:443",
+        "log": {
+            "loglevel": "warning"
+        },
+        "dns": {
+            "servers": [
+                {
+                    "address": "https://8.8.8.8/dns-query",
+                    "tag": "remote-dns"
+                },
+                {
+                    "address": "8.8.8.8",
+                    "domains": [
+                        "full:181.214.1.222"
+                    ],
+                    "skipFallback": true
+                }
+            ],
+            "queryStrategy": "UseIP",
+            "tag": "dns"
+        },
+        "inbounds": [
+            {
+                "port": 10808,
+                "protocol": "socks",
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "userLevel": 8
+                },
+                "sniffing": {
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ],
+                    "enabled": true,
+                    "routeOnly": true
+                },
+                "tag": "socks-in"
+            },
+            {
+                "port": 10853,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "address": "1.1.1.1",
+                    "network": "tcp,udp",
+                    "port": 53
+                },
+                "tag": "dns-in"
+            }
+        ],
+        "outbounds": [
+            {
+                "tag": "proxy",
+                "protocol": "vless",
+                "settings": {
+                    "vnext": [
+                        {
+                            "address": "181.214.1.222",
+                            "port": 443,
+                            "users": [
+                                {
+                                    "id": "401374e6-df77-41fb-f638-dad8184f175b",
+                                    "encryption": "none",
+                                    "flow": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "streamSettings": {
+                    "network": "grpc",
+                    "security": "tls",
+                    "sockopt": {
+                        "dialerProxy": "fragment"
+                    },
+                    "tlsSettings": {
+                        "serverName": "pqh36v4.hiddendom.shop",
+                        "fingerprint": "chrome",
+                        "alpn": [
+                            "h2"
+                        ]
+                    },
+                    "wsSettings": {
+                        "path": "/",
+                        "headers": {
+                            "Host": "181.214.1.222"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "fragment",
+                "protocol": "freedom",
+                "settings": {
+                    "fragment": {
+                        "packets": "tlshello",
+                        "length": "100-200",
+                        "interval": "1-1"
+                    },
+                    "domainStrategy": "UseIPv4v6"
+                }
+            }
+        ],
+        "routing": {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                {
+                    "inboundTag": [
+                        "dns-in"
+                    ],
+                    "outboundTag": "dns-out",
+                    "type": "field"
+                },
+                {
+                    "network": "tcp",
+                    "outboundTag": "proxy",
+                    "type": "field"
+                }
+            ]
+        }
+    },
+    {
+        "remarks": "棣冩晙 VL-GRPC-TLS 棣冨殾棣冨殼 NL-45.131.209.3:443",
+        "log": {
+            "loglevel": "warning"
+        },
+        "dns": {
+            "servers": [
+                {
+                    "address": "https://8.8.8.8/dns-query",
+                    "tag": "remote-dns"
+                },
+                {
+                    "address": "8.8.8.8",
+                    "domains": [
+                        "full:45.131.209.3"
+                    ],
+                    "skipFallback": true
+                }
+            ],
+            "queryStrategy": "UseIP",
+            "tag": "dns"
+        },
+        "inbounds": [
+            {
+                "port": 10808,
+                "protocol": "socks",
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "userLevel": 8
+                },
+                "sniffing": {
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ],
+                    "enabled": true,
+                    "routeOnly": true
+                },
+                "tag": "socks-in"
+            },
+            {
+                "port": 10853,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "address": "1.1.1.1",
+                    "network": "tcp,udp",
+                    "port": 53
+                },
+                "tag": "dns-in"
+            }
+        ],
+        "outbounds": [
+            {
+                "tag": "proxy",
+                "protocol": "vless",
+                "settings": {
+                    "vnext": [
+                        {
+                            "address": "45.131.209.3",
+                            "port": 443,
+                            "users": [
+                                {
+                                    "id": "401374e6-df77-41fb-f638-dad8184f175b",
+                                    "encryption": "none",
+                                    "flow": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "streamSettings": {
+                    "network": "grpc",
+                    "security": "tls",
+                    "sockopt": {
+                        "dialerProxy": "fragment"
+                    },
+                    "tlsSettings": {
+                        "serverName": "pqh36v4.hiddendom.shop",
+                        "fingerprint": "chrome",
+                        "alpn": [
+                            "h2"
+                        ]
+                    },
+                    "wsSettings": {
+                        "path": "/",
+                        "headers": {
+                            "Host": "45.131.209.3"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "fragment",
+                "protocol": "freedom",
+                "settings": {
+                    "fragment": {
+                        "packets": "tlshello",
+                        "length": "100-200",
+                        "interval": "1-1"
+                    },
+                    "domainStrategy": "UseIPv4v6"
+                }
+            }
+        ],
+        "routing": {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                {
+                    "inboundTag": [
+                        "dns-in"
+                    ],
+                    "outboundTag": "dns-out",
+                    "type": "field"
+                },
+                {
+                    "network": "tcp",
+                    "outboundTag": "proxy",
+                    "type": "field"
+                }
+            ]
+        }
+    },
+    {
+        "remarks": "棣冩晙 VL-GRPC-TLS 棣冨毉棣冨毇 US-159.246.55.174:443",
+        "log": {
+            "loglevel": "warning"
+        },
+        "dns": {
+            "servers": [
+                {
+                    "address": "https://8.8.8.8/dns-query",
+                    "tag": "remote-dns"
+                },
+                {
+                    "address": "8.8.8.8",
+                    "domains": [
+                        "full:159.246.55.174"
+                    ],
+                    "skipFallback": true
+                }
+            ],
+            "queryStrategy": "UseIP",
+            "tag": "dns"
+        },
+        "inbounds": [
+            {
+                "port": 10808,
+                "protocol": "socks",
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "userLevel": 8
+                },
+                "sniffing": {
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ],
+                    "enabled": true,
+                    "routeOnly": true
+                },
+                "tag": "socks-in"
+            },
+            {
+                "port": 10853,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "address": "1.1.1.1",
+                    "network": "tcp,udp",
+                    "port": 53
+                },
+                "tag": "dns-in"
+            }
+        ],
+        "outbounds": [
+            {
+                "tag": "proxy",
+                "protocol": "vless",
+                "settings": {
+                    "vnext": [
+                        {
+                            "address": "159.246.55.174",
+                            "port": 443,
+                            "users": [
+                                {
+                                    "id": "401374e6-df77-41fb-f638-dad8184f175b",
+                                    "encryption": "none",
+                                    "flow": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "streamSettings": {
+                    "network": "grpc",
+                    "security": "tls",
+                    "sockopt": {
+                        "dialerProxy": "fragment"
+                    },
+                    "tlsSettings": {
+                        "serverName": "pqh36v4.hiddendom.shop",
+                        "fingerprint": "chrome",
+                        "alpn": [
+                            "h2"
+                        ]
+                    },
+                    "wsSettings": {
+                        "path": "/",
+                        "headers": {
+                            "Host": "159.246.55.174"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "fragment",
+                "protocol": "freedom",
+                "settings": {
+                    "fragment": {
+                        "packets": "tlshello",
+                        "length": "100-200",
+                        "interval": "1-1"
+                    },
+                    "domainStrategy": "UseIPv4v6"
+                }
+            }
+        ],
+        "routing": {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                {
+                    "inboundTag": [
+                        "dns-in"
+                    ],
+                    "outboundTag": "dns-out",
+                    "type": "field"
+                },
+                {
+                    "network": "tcp",
+                    "outboundTag": "proxy",
+                    "type": "field"
+                }
+            ]
+        }
+    },
+    {
+        "remarks": "棣冩晙 VL-GRPC-TLS 棣冨殼棣冨毈 LT-88.216.66.30:443",
+        "log": {
+            "loglevel": "warning"
+        },
+        "dns": {
+            "servers": [
+                {
+                    "address": "https://8.8.8.8/dns-query",
+                    "tag": "remote-dns"
+                },
+                {
+                    "address": "8.8.8.8",
+                    "domains": [
+                        "full:88.216.66.30"
+                    ],
+                    "skipFallback": true
+                }
+            ],
+            "queryStrategy": "UseIP",
+            "tag": "dns"
+        },
+        "inbounds": [
+            {
+                "port": 10808,
+                "protocol": "socks",
+                "settings": {
+                    "auth": "noauth",
+                    "udp": true,
+                    "userLevel": 8
+                },
+                "sniffing": {
+                    "destOverride": [
+                        "http",
+                        "tls"
+                    ],
+                    "enabled": true,
+                    "routeOnly": true
+                },
+                "tag": "socks-in"
+            },
+            {
+                "port": 10853,
+                "protocol": "dokodemo-door",
+                "settings": {
+                    "address": "1.1.1.1",
+                    "network": "tcp,udp",
+                    "port": 53
+                },
+                "tag": "dns-in"
+            }
+        ],
+        "outbounds": [
+            {
+                "tag": "proxy",
+                "protocol": "vless",
+                "settings": {
+                    "vnext": [
+                        {
+                            "address": "88.216.66.30",
+                            "port": 443,
+                            "users": [
+                                {
+                                    "id": "401374e6-df77-41fb-f638-dad8184f175b",
+                                    "encryption": "none",
+                                    "flow": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "streamSettings": {
+                    "network": "grpc",
+                    "security": "tls",
+                    "sockopt": {
+                        "dialerProxy": "fragment"
+                    },
+                    "tlsSettings": {
+                        "serverName": "pqh36v4.hiddendom.shop",
+                        "fingerprint": "chrome",
+                        "alpn": [
+                            "h2"
+                        ]
+                    },
+                    "wsSettings": {
+                        "path": "/",
+                        "headers": {
+                            "Host": "88.216.66.30"
+                        }
+                    }
+                }
+            },
+            {
+                "tag": "fragment",
+                "protocol": "freedom",
+                "settings": {
+                    "fragment": {
+                        "packets": "tlshello",
+                        "length": "100-200",
+                        "interval": "1-1"
+                    },
+                    "domainStrategy": "UseIPv4v6"
+                }
+            }
+        ],
+        "routing": {
+            "domainStrategy": "IPIfNonMatch",
+            "rules": [
+                {
+                    "inboundTag": [
+                        "dns-in"
+                    ],
+                    "outboundTag": "dns-out",
+                    "type": "field"
+                },
+                {
+                    "network": "tcp",
+                    "outboundTag": "proxy",
+                    "type": "field"
+                }
+            ]
+        }
+    }
+]
