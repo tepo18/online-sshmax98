@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os, json, threading, urllib.request, subprocess, time, platform
+from typing import List, Dict
+
+# ---------------- مسیر خروجی ----------------
+FINAL_JSON = "final.json"
+
+# ---------------- منابع JSON ----------------
+LINKS_RAW = [
+    "https://raw.githubusercontent.com/tepo18/sab-vip10/main/tepo10.json",
+    "https://raw.githubusercontent.com/tepo18/sab-vip10/main/tepo20.json",
+    "https://raw.githubusercontent.com/tepo18/sab-vip10/main/tepo30.json",
+    "https://raw.githubusercontent.com/tepo18/sab-vip10/main/tepo40.json",
+    "https://raw.githubusercontent.com/tepo18/sab-vip10/main/tepo50.json",
+    "https://raw.githubusercontent.com/tepo18/sab-vip10/main/tepo60.json",
+]
+
+# ---------------- تست Ping ----------------
+def ping(host: str, count: int = 1, timeout: int = 1000) -> float:
+    param_count = "-n" if platform.system().lower() == "windows" else "-c"
+    param_timeout = "-w" if platform.system().lower() == "windows" else "-W"
+    try:
+        cmd = ["ping", param_count, str(count), param_timeout, str(timeout), host]
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        import re
+        match = re.search(r'time[=<]\s*(\d+\.?\d*)', result.stdout)
+        if match:
+            return float(match.group(1))
+    except:
+        pass
+    return float('inf')
+
+# ---------------- دریافت JSON ----------------
+def fetch_json(url: str) -> List[Dict]:
+    try:
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            data = json.loads(resp.read().decode())
+        return data if isinstance(data, list) else []
+    except Exception as e:
+        print(f"[!] Error fetching {url}: {e}")
+        return []
+
+# ---------------- اعتبارسنجی کانفیگ ----------------
+def validate_config(cfg: Dict) -> bool:
+    return bool(cfg and "remarks" in cfg and "outbounds" in cfg)
+
+# ---------------- پردازش کانفیگ‌ها ----------------
+def process_configs(configs: List[Dict], max_threads=20) -> List[Dict]:
+    results = []
+    lock = threading.Lock()
+    threads = []
+
+    def worker(cfg):
+        outbounds = cfg.get("outbounds", [])
+        if outbounds:
+            address = outbounds[0].get("settings", {}).get("vnext", [{}])[0].get("address")
+            if not address:
+                address = outbounds[0].get("settings", {}).get("servers", [{}])[0].get("address")
+            port = outbounds[0].get("settings", {}).get("vnext", [{}])[0].get("port", 443)
+            if address:
+                ping_time = ping(address)
+                if ping_time < float('inf'):
+                    with lock:
+                        cfg["_ping"] = ping_time
+                        results.append(cfg)
+
+    for cfg in configs:
+        t = threading.Thread(target=worker, args=(cfg,))
+        threads.append(t)
+        t.start()
+        if len(threads) >= max_threads:
+            for th in threads: th.join()
+            threads = []
+    for t in threads: t.join()
+
+    # حذف تکراری و مرتب‌سازی بر اساس ping
+    unique = {}
+    for cfg in results:
+        key = cfg.get("remarks")
+        if key not in unique:
+            unique[key] = cfg
+    final_list = list(unique.values())
+    final_list.sort(key=lambda x: x.get("_ping", float('inf')))
+    return final_list
+
+# ---------------- ذخیره فایل ----------------
+def save_json(configs: List[Dict]):
+    for cfg in configs: cfg.pop("_ping", None)
+    try:
+        with open(FINAL_JSON, "w", encoding="utf-8") as f:
+            json.dump(configs, f, indent=4, ensure_ascii=False)
+        print(f"[✅] Updated JSON ({len(configs)} configs) -> {FINAL_JSON}")
+    except Exception as e:
+        print(f"[!] Error saving {FINAL_JSON}: {e}")
+
+# ---------------- آپدیت همه منابع ----------------
+def update_all():
+    all_configs = []
+    threads = []
+    results = [None] * len(LINKS_RAW)
+
+    def worker(i, url):
+        results[i] = fetch_json(url)
+
+    for i, url in enumerate(LINKS_RAW):
+        t = threading.Thread(target=worker, args=(i, url))
+        threads.append(t)
+        t.start()
+    for t in threads: t.join()
+
+    for r in results:
+        if r:
+            for cfg in r:
+                if validate_config(cfg):
+                    all_configs.append(cfg)
+
+    final_configs = process_configs(all_configs)
+    save_json(final_configs)
+
+# ---------------- Main ----------------
+if __name__ == "__main__":
+    UPDATE_INTERVAL = 60 * 60  # 1 ساعت
+    print("[*] Starting JSON subscription updater with TCP+Ping...")
+    while True:
+        start = time.time()
+        update_all()
+        print(f"[*] Done. Time elapsed: {time.time() - start:.2f}s")
+        print(f"[*] Next update in {UPDATE_INTERVAL // 60} minutes...\n")
+        time.sleep(UPDATE_INTERVAL)
