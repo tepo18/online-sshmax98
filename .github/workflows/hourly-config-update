@@ -1,0 +1,49 @@
+name: hourly-config-update
+
+on:
+  schedule:
+    - cron: "0 */4 * * *" # اجرا هر ساعت در دقیقه 0
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      # دریافت کد مخزن
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # تنظیم Git برای کامیت خودکار
+      - name: Configure Git
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      # نصب Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      # نصب وابستگی‌ها
+      - name: Install dependencies
+        run: pip install requests psutil retrying PyYaml
+
+      # اجرای اسکریپت شما
+      - name: Run JSON updater
+        run: python cl.py  # <-- همان اسکریپت خودت که final.json را آپدیت می‌کند
+
+      # بررسی تغییرات و کامیت خودکار
+      - name: Commit and Push changes
+        run: |
+          FILE="final.json"
+          if [[ -n $(git status --porcelain $FILE) ]]; then
+            echo "Changes detected in $FILE. Committing..."
+            git add $FILE
+            git commit -m "chore: update configs [$FILE] [skip ci]"
+            git push origin HEAD:main
+          else
+            echo "No changes detected in $FILE."
