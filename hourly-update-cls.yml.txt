@@ -1,0 +1,75 @@
+name: update-cls
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */4 * * *"   # cl.py هر ۴ ساعت
+    - cron: "0 */6 * * *"   # cl2.py هر ۶ ساعت
+    - cron: "0 */8 * * *"  # cl3.py هر ۱۲ ساعت
+
+permissions:
+  contents: write
+
+jobs:
+  cl1-job:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */4 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3   # حداکثر ۳ دقیقه برای این job
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - run: pip install requests psutil retrying PyYaml || echo "skip install"
+      - run: timeout 180s python cl.py || echo "❌ cl.py failed or skipped"
+      - run: |
+          if [ -s final.json ]; then
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add final.json
+            git commit -m "auto update from cl.py [skip ci]" || echo "No changes"
+            git push || echo "skip push"
+          else
+            echo "⚠️ final.json empty or missing, skipping commit"
+
+  cl2-job:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */6 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5   # حداکثر ۵ دقیقه برای این job
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - run: pip install requests psutil retrying PyYaml || echo "skip install"
+      - run: timeout 300s python cl2.py || echo "❌ cl2.py failed or skipped"
+      - run: |
+          if [ -s final2.json ]; then
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add final2.json
+            git commit -m "auto update from cl2.py [skip ci]" || echo "No changes"
+            git push || echo "skip push"
+          else
+            echo "⚠️ final2.json empty or missing, skipping commit"
+
+  cl3-job:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 */12 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5   # حداکثر ۵ دقیقه برای این job
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - run: pip install requests psutil retrying PyYaml || echo "skip install"
+      - run: timeout 300s python cl3.py || echo "❌ cl3.py failed or skipped"
+      - run: |
+          if [ -s final3.json ]; then
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add final3.json
+            git commit -m "auto update from cl3.py [skip ci]" || echo "No changes"
+            git push || echo "skip push"
+          else
+            echo "⚠️ final3.json empty or missing, skipping commit"
