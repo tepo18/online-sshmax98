@@ -1,0 +1,30 @@
+name: update-cl3
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */10 * * *"   # اجرای cl3.py هر ۱۰ ساعت
+
+permissions:
+  contents: write
+
+jobs:
+  cl3-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - run: pip install requests psutil retrying PyYaml || echo "skip install"
+      - run: timeout 300s python cl3.py || echo "❌ cl3.py failed or skipped"
+      - run: |
+          if [ -s final.json ] || [ -s normal.json ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add final.json normal.json
+            git commit -m "auto update from cl3.py [skip ci]" || echo "No changes"
+            git push || echo "skip push"
+          else
+            echo "⚠️ final.json یا normal.json خالی یا موجود نیست، commit نشد"

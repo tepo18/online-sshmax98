@@ -1,0 +1,30 @@
+name: update-cl2
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */8 * * *"   # اجرای cl2.py هر ۸ ساعت
+
+permissions:
+  contents: write
+
+jobs:
+  cl2-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - run: pip install requests psutil retrying PyYaml || echo "skip install"
+      - run: timeout 300s python cl2.py || echo "❌ cl2.py failed or skipped"
+      - run: |
+          if [ -s final2.txt ] || [ -s normal2.txt ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add final2.txt normal2.txt
+            git commit -m "auto update from cl2.py [skip ci]" || echo "No changes"
+            git push || echo "skip push"
+          else
+            echo "⚠️ final2.txt یا normal2.txt خالی یا موجود نیست، commit نشد"
