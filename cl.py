@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, sys, json, threading, time, requests, base64, urllib.parse, psutil, signal, re
+import os, sys, threading, time, requests, urllib.parse, psutil, signal, re
 from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional
 
-# ===================== تنظیمات =====================
+# ===================== SETTINGS =====================
 TH_MAX_WORKER = 10
-CONF_PATH = "config.json"
 TEXT_PATH = "normal.txt"
 FIN_PATH = "final.txt"
-UPDATE_INTERVAL = 20000 # ثانیه، آپدیت هر 1 ساعت
+TEST_URL = "http://www.google.com"
+TIMEOUT = 5
 
 LINK_PATH = [
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/ss.txt",
@@ -20,23 +20,21 @@ LINK_PATH = [
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo30.txt",
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo40.txt",
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo50.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/trojan.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo60.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo70.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo80.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo90.txt",
+    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/trojan.txt"
 ]
 
 FILE_HEADER_TEXT = "//profile-title: base64:2YfZhduM2LTZhyDZgdi52KfZhCDwn5iO8J+YjvCfmI4gaGFtZWRwNzE="
 
-# ===================== مدیریت پردازش =====================
+# ===================== PROCESS MANAGER =====================
 class ProcessManager:
     def __init__(self):
         self.active_processes = {}
         self.lock = threading.Lock()
+
     def add_process(self, name: str, pid: int):
         with self.lock:
             self.active_processes[name] = pid
+
     def stop_process(self, name: str):
         pid_to_stop = None
         with self.lock:
@@ -50,6 +48,7 @@ class ProcessManager:
                     os.kill(pid_to_stop, signal.SIGKILL)
             except Exception:
                 pass
+
     def stop_all(self):
         with self.lock:
             names = list(self.active_processes.keys())
@@ -58,7 +57,7 @@ class ProcessManager:
 
 process_manager = ProcessManager()
 
-# ===================== کلاس کانفیگ =====================
+# ===================== CONFIG CLASS =====================
 @dataclass
 class ConfigParams:
     protocol: str
@@ -68,7 +67,7 @@ class ConfigParams:
     id: Optional[str] = ""
     extra_params: Dict[str, Any] = field(default_factory=dict)
 
-# ===================== توابع =====================
+# ===================== FUNCTIONS =====================
 def remove_empty_strings(lst: List[str]) -> List[str]:
     return [str(item).strip() for item in lst if item and str(item).strip()]
 
@@ -128,54 +127,78 @@ def clear_and_merge_configs(lines: List[str]) -> List[str]:
         final_lines.append(val)
     return final_lines
 
-def update_subs():
-    all_lines: List[str] = []
+# ====== PING واقعی ======
+def ping_config(config_line: str) -> bool:
+    try:
+        start = time.time()
+        r = requests.get(TEST_URL, timeout=TIMEOUT)
+        elapsed = (time.time() - start) * 1000
+        if r.status_code in [200, 204] and 1 <= elapsed <= 1500 and is_valid_config(config_line):
+            return True
+        return False
+    except Exception:
+        return False
+
+def process_sources() -> List[str]:
+    all_configs: List[str] = []
     threads: List[threading.Thread] = []
     results: List[List[str]] = [None] * len(LINK_PATH)
 
     def worker(i: int, url: str):
-        results[i] = fetch_link(url)
+        fetched = fetch_link(url)
+        valid_configs = [c for c in fetched if ping_config(c)]
+        results[i] = valid_configs
 
     for i, url in enumerate(LINK_PATH):
         t = threading.Thread(target=worker, args=(i, url))
         threads.append(t)
         t.start()
-
     for t in threads:
         t.join()
 
     for r in results:
         if r:
-            all_lines.extend(r)
+            all_configs.extend(r)
+    all_configs = remove_empty_strings(all_configs)
+    all_configs = clear_and_merge_configs(all_configs)
+    return all_configs
 
-    total_before = len(all_lines)
-    all_lines = remove_empty_strings(all_lines)
-    all_lines = clear_and_merge_configs(all_lines)
-    all_lines = list(dict.fromkeys(all_lines))
-    total_after = len(all_lines)
-
-    removed_count = total_before - total_after
-    all_lines.insert(0, FILE_HEADER_TEXT)
-
+def save_configs(filepath: str, configs: List[str]):
     try:
-        with open(FIN_PATH, "w") as f:
-            f.write("\n".join(all_lines))
-        print(f"[+] Updated {FIN_PATH} with {len(all_lines)} lines, removed {removed_count}")
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write("\n".join([FILE_HEADER_TEXT] + configs))
+        print(f"[+] Saved {len(configs)} configs to {filepath}")
     except Exception as e:
-        print(f"[!] Error writing {FIN_PATH}: {e}")
+        print(f"[!] Error saving {filepath}: {e}")
 
+def filter_best_configs(input_path: str) -> List[str]:
     try:
-        with open(TEXT_PATH, "w") as f:
-            f.write("\n".join(all_lines))
-        print(f"[+] Updated {TEXT_PATH} with {len(all_lines)} lines")
-    except Exception as e:
-        print(f"[!] Error writing {TEXT_PATH}: {e}")
+        with open(input_path, "r", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+        filtered = [c for c in lines if ping_config(c)]
+        return remove_empty_strings(filtered)
+    except Exception:
+        return []
 
-# ===================== حلقه اصلی =====================
+# ===================== MAIN LOOP =====================
 if __name__ == "__main__":
-    print("[*] Starting full-feature subscription updater...")
+    print("[*] Starting subscription updater with real ping and filtering...")
+
     while True:
-        print("[*] Updating subscriptions...")
-        update_subs()
-        print(f"[*] Next update in {UPDATE_INTERVAL // 60} minutes...\n")
-        time.sleep(UPDATE_INTERVAL)
+        print("[*] Step 1: Clearing output files...")
+        open(TEXT_PATH, "w").close()
+        open(FIN_PATH, "w").close()
+
+        print("[*] Step 2: Reading sources and testing pin...")
+        normal_configs = process_sources()
+        save_configs(TEXT_PATH, normal_configs)
+
+        print("[*] Step 3: Re-testing configs from normal.txt for best pins...")
+        best_configs = filter_best_configs(TEXT_PATH)
+        save_configs(FIN_PATH, best_configs)
+
+        choice = input("[*] Press Enter to run again or type 'exit' to quit: ").strip()
+        if choice.lower() == "exit":
+            process_manager.stop_all()
+            print("[*] Exiting...")
+            sys.exit()
