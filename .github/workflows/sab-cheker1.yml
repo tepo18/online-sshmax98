@@ -1,0 +1,31 @@
+name: update-cl
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"   # اجرای cl.py هر ۶ ساعت
+
+permissions:
+  contents: write
+
+jobs:
+  cl-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - run: pip install requests psutil retrying PyYaml || echo "skip install"
+      - run: timeout 180s python cl.py || echo "❌ cl.py failed or skipped"
+      - run: |
+          if [[ -s final.txt || -s normal.txt ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add final.txt normal.txt
+            git commit -m "auto update from cl.py [skip ci]" || echo "No changes"
+            git push || echo "skip push"
+          else
+            echo "⚠️ final.txt یا normal.txt خالی یا موجود نیست، commit نشد"
+          fi
