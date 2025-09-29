@@ -367,7 +367,6 @@ vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.121:8880?mode=gun&securit
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.97:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9423_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.93:8880?mode=gun&security=&encryption=none&authority=%2FJOKERRVPN_BIA_CHANEL%40JOKERRVPN&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9406_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.58:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9343_%40Surfboardv2ray
-vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.78:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9359_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.133:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9311_%40Surfboardv2ray
 vless://e89ba39d-ae7e-493a-a57b-cdd55b42b4e3@188.245.75.235:443?security=&encryption=none&headerType=none&type=tcp#%F0%9F%87%A9%F0%9F%87%AADE_9569_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.184:8880?security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9328_%40Surfboardv2ray
@@ -376,6 +375,7 @@ vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.78:8880?mode=gun&security
 vless://edc0a710-b736-455a-a9f2-d26150e624b2@enthusiastic-century.oneeat.co:80?path=%2F&security=&encryption=none&type=ws#%F0%9F%87%A8%F0%9F%87%A6CA_10051_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.124:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9308_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@185.236.232.221:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9276_%40Surfboardv2ray
+vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.78:8880?mode=gun&security=&encryption=none&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9359_%40Surfboardv2ray
 vless://e89ba39d-ae7e-493a-a57b-cdd55b42b4e3@188.245.75.235:443?security=&encryption=none&headerType=none&type=tcp#%F0%9F%87%A9%F0%9F%87%AADE_9563_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.80:8880?mode=gun&security=&encryption=none&authority=%2FJOKERRVPN_BIA_CHANEL%40JOKERRVPN&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9390_%40Surfboardv2ray
 vless://e4824193-4f54-453b-d037-88368e85ef0e@45.82.251.93:8880?mode=gun&security=&encryption=none&authority=%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN--%40HiByeVPNN&type=grpc#%F0%9F%87%BA%F0%9F%87%B8US_9408_%40Surfboardv2ray
