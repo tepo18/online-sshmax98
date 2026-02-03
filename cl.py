@@ -14,16 +14,25 @@ from typing import List
 # ===================== تنظیمات =====================
 TEXT_PATH = "normal.txt"
 FIN_PATH = "final.txt"
-
 LINK_PATH = [
+    "https://raw.githubusercontent.com/hamedp-71/v2go_NEW/main/Splitted-By-Protocol/ss.txt",
+    "https://raw.githubusercontent.com/tepo18/tepo90/main/ss.txt",
+    "https://raw.githubusercontent.com/tepo18/reza-shah1320/main/ss.txt",
     "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/ss.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/vless.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo10.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo20.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo30.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo40.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/tepo50.txt",
-    "https://raw.githubusercontent.com/tepo18/online-sshmax98/main/trojan.txt"
+    "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/ss.txt",
+    "https://raw.githubusercontent.com/youfoundamin/V2rayCollector/main/ss_iran.txt",
+    "https://raw.githubusercontent.com/dream4network/telegram-configs-collector/main/protocols/shadowsocks",
+    "https://github.com/barry-far/V2ray-Configs/raw/main/Splitted-By-Protocol/ss.txt",
+    "https://github.com/Kwinshadow/TelegramV2rayCollector/raw/main/sublinks/b64ss.txt",
+    "https://raw.githubusercontent.com/iboxz/free-v2ray-collector/main/main/shadowsocks",
+    "https://raw.githubusercontent.com/mermeroo/free-v2ray-collector/main/main/shadowsocks",
+    "https://raw.githubusercontent.com/yebekhe/TelegramV2rayCollector/main/sub/normal/shadowsocks",
+    "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/ss",
+    "https://raw.githubusercontent.com/mheidari98/.proxy/refs/heads/main/ss",
+    "https://raw.githubusercontent.com/Huibq/TrojanLinks/master/links/ss",
+    "https://raw.githubusercontent.com/Huibq/TrojanLinks/master/links/ss_with_plugin",
+    "https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/ssbase64",
+    "https://raw.githubusercontent.com/vxiaov/free_proxy_ss/main/ss/sssub"
 ]
 
 FILE_HEADER_TEXT = "//profile-title: base64:2YfZhduM2LTZhyDZgdi52KfZhCDwn5iO8J+YjvCfmI4gaGFtZWRwNzE="
