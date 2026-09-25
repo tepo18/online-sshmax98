@@ -3,7 +3,7 @@ name: update-cl2
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */8 * * *"   # اجرای cl2.py هر ۸ ساعت
+    - cron: "0/8 * * * *"   # اجرای cl2.py هر ۸ ساعت
 
 permissions:
   contents: write
