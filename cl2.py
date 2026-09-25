@@ -16,7 +16,11 @@ TEXT_PATH = "normal2.txt"
 FIN_PATH = "final2.txt"
 
 LINK_PATH = [
-    
+    "https://878bmx86p0vqtwdgrv5b9.ahsan-tepo1383online.workers.dev/oD21lBZY1DtV/sub/raw?app=xray#%F0%9F%92%A6%20BPB%20Raw",
+    "https://raw.githubusercontent.com/patterniha/Free-Configs/refs/heads/main/configs_base64.txt",
+    "https://old-limit-e122-edge-333.ahsan-tepo1383online.workers.dev/sub?token=8bfaf9cc1c81e4005289b8d8c738077c",
+    "https://uxzp6qeuunos.shah-tepo98.workers.dev/feed/tepo98",
+    "https://sun98-art-ab3f.shah-tepo98.workers.dev/sub/vless?token=a6hvd4m7oja4vmr9",
 ]
 
 FILE_HEADER_TEXT = "//profile-title: base64:2YfZhduM2LTZhyDZgdi52KfZhCDwn5iO8J+YjvCfmI4gaGFtZWRwNzE="
