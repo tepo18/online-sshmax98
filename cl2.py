@@ -16,38 +16,7 @@ TEXT_PATH = "normal2.txt"
 FIN_PATH = "final2.txt"
 
 LINK_PATH = [
-    "https://raw.githubusercontent.com/barry-far/V2ray-Configs/refs/heads/main/Sub5.txt",
-    "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/ss",
-    "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/trojan",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Splitted-By-Protocol/ss.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Splitted-By-Protocol/trojan.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Splitted-By-Protocol/vmess.txt",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/tuic",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/hysteria",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/juicity",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/reality",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/shadowsocks",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/trojan",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/vless",
-    "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/refs/heads/main/channels/protocols/vmess",
-    "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub6.txt",
-    "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub7.txt",
-    "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub8.txt",
-    "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub9.txt",
-    "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub10.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list1.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list2.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list3.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list4.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list5.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list6.txt",
-    "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config%20list7.txt",
-    "https://azadnet05.pages.dev/sub/4d794980-54c0-4fcb-8def-c2beaecadbad#EN-Normal",
-    "https://raw.githubusercontent.com/iPsycho1/Subscription/refs/heads/main/iPsycho_Multi_Location",
-    "https://raw.githubusercontent.com/rango-cfs/NewCollector/refs/heads/main/v2ray_links.txt",
-    "https://elena.com.co/ELiV2-RAY-Sublink.txt",
-    "https://raw.githubusercontent.com/AB-84-AB/Free-Shadowsocks/refs/heads/main/Telegram-id-AB_841",
-    "https://raw.githubusercontent.com/SoliSpirit/v2ray-configs/refs/heads/main/all_configs.txt"
+    
 ]
 
 FILE_HEADER_TEXT = "//profile-title: base64:2YfZhduM2LTZhyDZgdi52KfZhCDwn5iO8J+YjvCfmI4gaGFtZWRwNzE="
